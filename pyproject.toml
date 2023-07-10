@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "django-template"
+name = "app"
 version = "0.1.0"
 description = ""
 authors = ["Guilherme Munarolo <guilherme.munarolo@plentific.com>"]
@@ -28,10 +28,11 @@ target-version = ["py39"]
 line_length = 80
 multi_line_output = 3
 include_trailing_comma = true
-force_grid_wrap = 0
 use_parentheses = true
-sections="FUTURE,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
-default_section="THIRDPARTY"
+known_first_party = [
+    "common",
+    "schedule"
+]
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "app.settings"
