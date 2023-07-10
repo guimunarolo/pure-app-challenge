@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "django-template"
+version = "0.1.0"
+description = ""
+authors = ["Guilherme Munarolo <guilherme.munarolo@plentific.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Django = "^4.2.3"
+psycopg2-binary = "^2.9.6"
+djangorestframework = "^3.14.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.4.0"
+pytest-django = "^4.5.2"
+pytest-env = "^0.8.2"
+ipdb = "^0.13.13"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 80
+target-version = ["py39"]
+
+[tool.isort]
+line_length = 80
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+sections="FUTURE,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+default_section="THIRDPARTY"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "app.settings"
+pythonpath = "app"
+addopts = "-sxvv"
+testpaths = [
+    "tests",
+]
+env = [
+    "DB_NAME=app_db_test",
+]
