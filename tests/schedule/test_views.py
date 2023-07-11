@@ -42,3 +42,19 @@ class TestScheduleViewSet:
         assert response.status_code == status.HTTP_200_OK
         assert len(response_data) == 1
         assert response_data[0]["day_of_week"] == today_week_day
+
+    def test_list_class_name_filter(self, client):
+        class_name = "5A"
+        # listed schedule
+        ScheduleFactory(related_class__name=class_name)
+        # unlisted schedule
+        ScheduleFactory(related_class__name="some class")
+
+        response = client.get(
+            reverse("schedule-list"), {"class_name": class_name}
+        )
+        response_data = response.json()
+
+        assert response.status_code == status.HTTP_200_OK
+        assert len(response_data) == 1
+        assert response_data[0]["class"]["name"] == class_name
