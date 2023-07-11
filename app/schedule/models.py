@@ -11,10 +11,6 @@ class Class(UUIDModel):
     def __str__(self):
         return self.name
 
-    @property
-    def student_count(self):
-        return self.students.count()
-
 
 class Student(UUIDModel):
     name = models.CharField(max_length=255)
@@ -60,4 +56,4 @@ class Schedule(UUIDModel):
         ordering = ("day_of_week", "hour")
 
     def __str__(self):
-        return self.uuid
+        return str(self.uuid)

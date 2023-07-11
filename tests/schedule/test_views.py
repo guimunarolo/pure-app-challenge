@@ -22,7 +22,7 @@ class TestScheduleViewSet:
                 "teacher": {"name": teacher.name},
                 "class": {
                     "name": school_class.name,
-                    "student_count": school_class.student_count,
+                    "student_count": school_class.students.count(),
                 },
             }
         ]

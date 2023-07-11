@@ -20,9 +20,6 @@ class ScheduleClassNameFilter(filters.BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
         class_name = request.query_params.get("class_name")
         if class_name:
-            return queryset.filter(
-                related_class__name=class_name,
-                related_class__name__icontains=class_name,
-            )
+            return queryset.filter(related_class__name=class_name)
 
         return queryset
