@@ -11,7 +11,7 @@ pytestmark = pytest.mark.django_db
 
 class TestScheduleViewSet:
     def test_list_ok(self, client, schedule, teacher, school_class, subject):
-        response = client.get(reverse("schedule-list"))
+        response = client.get(reverse("schedule:schedule-list"))
 
         assert response.status_code == status.HTTP_200_OK
         assert response.json() == [
@@ -36,7 +36,9 @@ class TestScheduleViewSet:
             day_of_week=today_week_day + 1 if today_week_day < 7 else 1
         )
 
-        response = client.get(reverse("schedule-list"), {"for_today": "true"})
+        response = client.get(
+            reverse("schedule:schedule-list"), {"for_today": "true"}
+        )
         response_data = response.json()
 
         assert response.status_code == status.HTTP_200_OK
@@ -51,7 +53,7 @@ class TestScheduleViewSet:
         ScheduleFactory(related_class__name="some class")
 
         response = client.get(
-            reverse("schedule-list"), {"class_name": class_name}
+            reverse("schedule:schedule-list"), {"class_name": class_name}
         )
         response_data = response.json()
 

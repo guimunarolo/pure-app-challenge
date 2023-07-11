@@ -6,3 +6,4 @@ router = DefaultRouter()
 router.register("", ScheduleViewSet, basename="schedule")
 
 urlpatterns = router.urls
+app_name = "schedule"

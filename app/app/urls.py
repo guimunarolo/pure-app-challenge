@@ -1,5 +1,5 @@
 from django.urls import include, path
 
 urlpatterns = [
-    path("schedule/", include("schedule.urls")),
+    path("schedule/", include("schedule.urls", namespace="schedule")),
 ]
